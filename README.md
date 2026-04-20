@@ -1,27 +1,84 @@
-# React + TypeScript + Vite
+# Block Graph
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Block Graph is a lightweight React app for building and exploring a simple node graph on a free-form canvas. Each block can be dragged around, and new child blocks can be added directly from any existing block.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The app starts with a single root block placed at a random position inside the viewport. From there, you can:
 
-## Expanding the ESLint configuration
+- Drag blocks to reposition them anywhere on the screen
+- Add child blocks using the `+` button inside a block
+- See parent-child relationships rendered as dashed connector lines
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The layout is intentionally minimal so the graph itself stays the focus.
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+- Full-screen graph canvas
+- Draggable blocks with live position updates
+- Parent-child block creation
+- Dashed connection lines between related blocks
+- Randomized initial placement to avoid overlap near the edges
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+ recommended
+- npm
+
+### Install Dependencies
+
+```bash
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Start the Development Server
+
+```bash
+npm run dev
+```
+
+Then open the local URL shown in the terminal, usually:
+
+```bash
+http://localhost:5173/
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+### Preview the Production Build
+
+```bash
+npm run preview
+```
+
+### Lint the Project
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+- `src/App.jsx` - main graph state and rendering logic
+- `src/components/Block.tsx` - draggable block UI and child creation button
+- `src/components/ConnectionLine.tsx` - dashed SVG line between parent and child blocks
+- `src/utils/position.ts` - random block position helper
+- `src/index.css` - Tailwind entry styles
+
+## Notes
+
+- Blocks are positioned using viewport coordinates, so resizing the browser may change how the canvas feels.
+- Connection lines are drawn between block centers based on their current positions.
